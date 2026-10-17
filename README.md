@@ -10,7 +10,11 @@ Los archivos se procesan en tu dispositivo: no se suben a ningún servidor.
 - **Dividir y extraer:** por rangos (`1-3, 5, 7-9`), cada N páginas o una página por archivo; los resultados múltiples se descargan en un `.zip`.
 - **Recortar:** márgenes por porcentaje, en una página o en varias. Se guarda como recuadro de recorte, así que el contenido no se borra.
 - **Marca de agua y números de página:** con vista previa sobre las miniaturas.
-- **Anotar:** texto, dibujo a mano alzada (con Apple Pencil, ratón o dedo), firma reutilizable e imágenes desde el dispositivo. Con **Seleccionar**, cualquier anotación se arrastra para moverla y se cambia de tamaño desde el círculo de la esquina.
+- **Anotar** (un solo botón en el panel):
+  - Contenido: texto, dibujo a mano alzada (Apple Pencil, ratón o dedo), formas rellenas sin contorno (rectángulo, óvalo y triángulo), firma reutilizable e imágenes del dispositivo.
+  - Color: diez colores y un selector de color libre. El color y el tamaño también se aplican a la anotación seleccionada.
+  - Mover y editar: con **Seleccionar**, o con doble toque o doble clic desde cualquier herramienta, la anotación se arrastra para moverla. En un texto, el doble toque abre su edición.
+  - Tamaño: el círculo de la esquina lo cambia. Las formas cambian ancho y alto por separado; el resto, de forma proporcional.
 - **Comprimir** en tres niveles:
 
   | Nivel | Qué hace |

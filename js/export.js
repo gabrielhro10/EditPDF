@@ -51,6 +51,36 @@
     page.pushOperators(...ops);
   }
 
+  // Forma rellena sin contorno (rect, ellipse, triangle) guardada por su centro, tamaño y giro.
+  // Los puntos se calculan en su marco (x a la derecha, y hacia arriba) y se pasan al espacio de usuario.
+  function fillShape(page, a, toOut) {
+    const O = PDFLib;
+    const r = (a.rot * Math.PI) / 180;
+    const c = Math.cos(r);
+    const s = Math.sin(r);
+    const P2 = (lx, ly) => toOut(a.cx + lx * c - ly * s, a.cy + lx * s + ly * c);
+    const w = a.w / 2;
+    const h = a.h / 2;
+    const ops = [O.pushGraphicsState(), O.setFillingRgbColor(...hexToRgb(a.color))];
+    const poly = (pts) => pts.forEach(([x, y], k) => { const [ox, oy] = P2(x, y); ops.push(k ? O.lineTo(ox, oy) : O.moveTo(ox, oy)); });
+    if (a.kind === 'ellipse') {
+      const k = 0.5523;
+      const curve = (p1, p2, p3) => { const a1 = P2(...p1), a2 = P2(...p2), a3 = P2(...p3); ops.push(O.appendBezierCurve(a1[0], a1[1], a2[0], a2[1], a3[0], a3[1])); };
+      const start = P2(w, 0);
+      ops.push(O.moveTo(start[0], start[1]));
+      curve([w, k * h], [k * w, h], [0, h]);
+      curve([-k * w, h], [-w, k * h], [-w, 0]);
+      curve([-w, -k * h], [-k * w, -h], [0, -h]);
+      curve([k * w, -h], [w, -k * h], [w, 0]);
+    } else if (a.kind === 'triangle') {
+      poly([[0, h], [w, -h], [-w, -h]]);
+    } else {
+      poly([[-w, -h], [w, -h], [w, h], [-w, h]]);
+    }
+    ops.push(O.closePath(), O.fill(), O.popGraphicsState());
+    page.pushOperators(...ops);
+  }
+
   // Página convertida en imagen (para PDF cifrados que pdf-lib no puede copiar).
   async function rasterPage(out, p) {
     const src = S.sources.get(p.src);
@@ -139,6 +169,7 @@
       // Anotaciones (guardadas en el espacio de usuario de la página original).
       for (const a of p.annots || []) {
         if (a.type === 'stroke') strokePath(page, a.pts, a.color, a.w, toOut);
+        else if (a.type === 'shape') fillShape(page, a, toOut);
         else if (a.type === 'sign') a.strokes.forEach((s) => strokePath(page, s, a.color, a.w, toOut));
         else if (a.type === 'text') {
           const [x, y] = toOut(a.x, a.y);

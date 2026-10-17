@@ -238,8 +238,13 @@ button { cursor: pointer; }
 .ed-tool { min-height: 44px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 10px; background: transparent; font-size: 14px; font-weight: 600; color: var(--a-ink); white-space: nowrap; }
 .ed-tool[aria-pressed="true"] { background: var(--a-accent-soft); color: var(--a-accent-ink); }
 .ed-div { width: 1px; height: 28px; background: var(--a-line); margin: 0 6px; flex: none; }
+.ed-tray { flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; padding: 6px 16px; background: var(--a-soft); border-bottom: 1px solid var(--a-line); }
+.tray-note { font-size: 12px; color: var(--a-muted); margin-left: 6px; }
+.cdot { width: 20px; height: 20px; flex: none; display: inline-block; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(27,33,48,.25); }
+.pick { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 6px 0 12px; border: 1px solid var(--a-line); border-radius: 10px; background: var(--a-surface); font-size: 14px; font-weight: 600; cursor: pointer; }
+.pick input[type="color"] { width: 34px; height: 34px; padding: 0; border: 0; background: transparent; cursor: pointer; }
 .swatch { width: 44px; height: 44px; flex: none; border: 0; background: transparent; display: grid; place-items: center; }
-.swatch i { width: 24px; height: 24px; border-radius: 50%; }
+.swatch i { width: 24px; height: 24px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(27,33,48,.2); }
 .swatch[aria-pressed="true"] i { box-shadow: 0 0 0 2px #fff, 0 0 0 4px currentColor; }
 .ed-body { flex: 1; min-height: 0; display: flex; }
 .ed-strip { width: 116px; flex: none; box-sizing: border-box; padding: 14px 0 calc(14px + var(--sab)); display: flex; flex-direction: column; align-items: center; gap: 12px; background: var(--a-surface); border-right: 1px solid var(--a-line); overflow-y: auto; }

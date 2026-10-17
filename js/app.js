@@ -103,7 +103,7 @@
     $('pill').innerHTML = `<span class="ctx-count">${count}</span>` +
       P.ACTIONS.map((a) => `<button type="button" class="a-icon" data-act="${a.id}" aria-label="${a.aria || a.label}" ${a.danger ? 'style="color:var(--a-danger-dark)"' : ''}>${icon(a.icon, 22)}</button>`).join('');
     // Hoja inferior: con selección, primero sus acciones; las herramientas del documento no las repiten.
-    const toolTiles = [['split', 'split', 'Dividir'], ['watermark', 'drop', 'Marca de agua'], ['numbers', 'hash', 'N.º de página'], ['draw', 'pen', 'Anotar'], ['compress', 'compress', 'Comprimir']];
+    const toolTiles = [['split', 'split', 'Dividir'], ['watermark', 'drop', 'Marca de agua'], ['numbers', 'hash', 'N.º de página'], ['annotate', 'pen', 'Anotar'], ['compress', 'compress', 'Comprimir']];
     const tiles = (n ? P.ACTIONS.map((a) => `<button type="button" class="tile${a.danger ? ' danger' : ''}" data-act="${a.id}">${icon(a.icon, 22)}${a.label}</button>`).join('') : '') +
       toolTiles.map(([id, ic, label]) => `<button type="button" class="tile" data-tool="${id}">${icon(ic, 22)}${label}</button>`).join('') +
       (!n && S.pages.length ? `<button type="button" class="tile danger" data-tool="clear">${icon('trash', 22)}Cerrar todo</button>` : '');
@@ -118,7 +118,7 @@
   function renderTools() {
     $('toolList').innerHTML = P.TOOLS.map((g) =>
       `<div class="a-group">${g.group}</div>` +
-      g.items.map((t) => `<button type="button" class="a-tool" data-tool="${t.id}" ${t.id === 'order' ? 'aria-current="true"' : ''} title="${t.label}">${icon(t.icon)}<span class="tool-label">${t.label}</span></button>`).join('')
+      g.items.map((t) => `<button type="button" class="a-tool" data-tool="${t.id}" ${t.id === 'order' ? 'aria-current="true"' : ''} title="${t.title || t.label}">${icon(t.icon)}<span class="tool-label">${t.label}</span></button>`).join('')
     ).join('');
   }
   function applyToolLabels() {
@@ -217,7 +217,7 @@
       case 'numbers': P.dialogs.numbers(); break;
       case 'compress': P.dialogs.compress(); break;
       case 'clear': P.dialogs.confirmClose(); break;
-      case 'text': case 'draw': case 'sign': case 'image': P.openEditor(first.id, id); break;
+      case 'annotate': P.openEditor(first.id); break;
     }
     renderTabs();
   };
@@ -291,7 +291,7 @@
       if (d.tab === 'load') $('fileInput').click();
       if (d.tab === 'pages') $('sheet').classList.remove('tools-open');
       if (d.tab === 'tools') $('sheet').classList.toggle('tools-open');
-      if (d.tab === 'annotate') P.doTool('draw');
+      if (d.tab === 'annotate') P.doTool('annotate');
       renderTabs();
       return;
     }

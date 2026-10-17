@@ -36,7 +36,12 @@ P.ICONS = {
   grip: '<g fill="currentColor" stroke="none"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></g>',
   warn: '<path d="M12 4 2 20h20L12 4z"/><path d="M12 10v4M12 17h.01"/>',
   info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
-  image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/>'
+  image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/>',
+  shape: '<rect x="3" y="10" width="10" height="10" rx="1"/><circle cx="16" cy="8" r="5"/>',
+  rect: '<rect x="4" y="6" width="16" height="12" rx="1" fill="currentColor" stroke="none"/>',
+  ellipse: '<ellipse cx="12" cy="12" rx="8.5" ry="6.5" fill="currentColor" stroke="none"/>',
+  triangle: '<path d="M12 4.5 20.5 19h-17z" fill="currentColor" stroke="none"/>',
+  chev: '<path d="m6 9 6 6 6-6"/>'
 };
 
 P.icon = (name, size = 20, sw = 1.8) =>
@@ -59,21 +64,17 @@ P.isStandalone = () => navigator.standalone === true || matchMedia('(display-mod
 P.FILE_COLORS = ['#2457d6', '#0b8a7a', '#b45f06', '#7a3fc4', '#c2185b', '#00838f', '#6b7a00', '#6d4c41'];
 
 // Herramientas del panel. Girar, extraer, recortar y eliminar no están aquí:
-// aparecen en la barra de acciones al seleccionar páginas.
+// aparecen en la barra de acciones al seleccionar páginas. Texto, dibujo, formas, firma
+// e imagen están dentro del editor, al que se entra con «Anotar».
 P.TOOLS = [
   { group: 'Organizar', items: [
     { id: 'order', icon: 'layers', label: 'Unir y ordenar', short: 'Ordenar' },
     { id: 'split', icon: 'split', label: 'Dividir', short: 'Dividir' }
   ] },
-  { group: 'Efectos', items: [
+  { group: 'Editar', items: [
+    { id: 'annotate', icon: 'pen', label: 'Anotar', short: 'Anotar', title: 'Texto, dibujo, formas, firma e imagen' },
     { id: 'watermark', icon: 'drop', label: 'Marca de agua', short: 'Marca' },
     { id: 'numbers', icon: 'hash', label: 'Números de página', short: 'Números' }
-  ] },
-  { group: 'Anotar', items: [
-    { id: 'text', icon: 'text', label: 'Texto', short: 'Texto' },
-    { id: 'draw', icon: 'pen', label: 'Dibujo', short: 'Dibujo' },
-    { id: 'sign', icon: 'sign', label: 'Firma', short: 'Firma' },
-    { id: 'image', icon: 'image', label: 'Imagen', short: 'Imagen' }
   ] },
   { group: 'Archivo', items: [
     { id: 'compress', icon: 'compress', label: 'Comprimir', short: 'Comprimir' },
