@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EditPDF</title>
+<meta name="description" content="Une, ordena, rota, recorta, anota y comprime PDF en el navegador. Los archivos no salen de tu dispositivo.">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="EditPDF">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="app show-num show-src file-colors" id="app" data-layout="wide">
+  <header class="a-top">
+    <button type="button" class="a-logo" id="btnLogo" aria-controls="tools" aria-expanded="true" aria-label="Contraer el panel de herramientas" title="Contraer panel"><img src="icons/icon.svg" alt="" width="34" height="34"></button>
+    <span class="a-name">EditPDF</span>
+    <button type="button" class="a-btn" id="btnLoad"><span data-icon="plus"></span><span class="lbl-wide">Cargar</span></button>
+    <button type="button" class="a-icon" id="btnUndo" aria-label="Deshacer" title="Deshacer" data-icon="undo" disabled></button>
+    <button type="button" class="a-icon" id="btnRedo" aria-label="Rehacer" title="Rehacer" data-icon="redo" disabled></button>
+    <span class="a-spacer"></span>
+    <button type="button" class="a-btn a-primary" id="btnExport"><span data-icon="share"></span>Exportar</button>
+  </header>
+
+  <div class="a-body">
+    <nav class="a-tools" id="tools" aria-label="Herramientas">
+      <div id="toolList"></div>
+      <div class="a-tools-foot">
+        <button type="button" class="a-tool" id="btnAbout"><span data-icon="info"></span><span class="tool-label" id="aboutLabel">Acerca de EditPDF</span></button>
+      </div>
+    </nav>
+
+    <main class="a-main">
+      <div class="a-subbar" id="subbar">
+        <div class="a-chips" id="chips"></div>
+        <span class="a-spacer"></span>
+        <div class="a-seg" role="group" aria-label="Modo de vista">
+          <button type="button" data-mode="grid" aria-pressed="true" aria-label="Cuadrícula"><span data-icon="grid"></span><span class="lbl-wide">Cuadrícula</span></button>
+          <button type="button" data-mode="list" aria-pressed="false" aria-label="Lista"><span data-icon="list"></span><span class="lbl-wide">Lista</span></button>
+        </div>
+        <label class="range-row size-ctl">S <input type="range" id="sizeQuick" min="110" max="230" step="10" value="150" aria-label="Tamaño de las miniaturas"> L</label>
+        <button type="button" class="a-icon" id="btnView" aria-expanded="false" aria-controls="viewPop" aria-label="Opciones de vista" title="Opciones de vista" data-icon="sliders"></button>
+      </div>
+      <div class="a-ctx" id="ctxBar"></div>
+      <div class="a-content" id="content">
+        <div class="a-grid" id="grid"></div>
+        <div class="a-list" id="list" hidden></div>
+        <section class="a-empty" id="empty" hidden>
+          <span class="dlg-ico" data-icon="file"></span>
+          <h2>Abre un PDF para empezar</h2>
+          <p><span class="only-mouse">Arrastra aquí uno o varios PDF, o usa el botón. </span><span class="only-touch">Toca el botón para elegir uno o varios PDF. </span>Se procesan en tu dispositivo y no se suben a ningún servidor.</p>
+          <button type="button" class="a-btn a-primary" id="btnLoadEmpty"><span data-icon="plus"></span>Cargar PDF</button>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <section class="a-sheet" id="sheet" aria-label="Herramientas"></section>
+  <div class="a-pill" id="pill"></div>
+  <nav class="a-tabs" id="tabs" aria-label="Secciones"></nav>
+  <section class="a-editor" id="editor" aria-label="Editor de página" hidden></section>
+  <div class="a-pop" id="viewPop" role="dialog" aria-label="Opciones de vista" hidden></div>
+  <div class="a-modal" id="modal" hidden><div class="a-dialog" id="dialog" role="dialog" aria-modal="true"></div></div>
+  <input type="file" id="fileInput" accept=".pdf,application/pdf" multiple hidden>
+  <div class="a-toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+<noscript>EditPDF necesita JavaScript para funcionar.</noscript>
+
+<!-- Librerías (mantener en sincronía con LIB_URLS en sw.js) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js" crossorigin="anonymous"></script>
+<script defer src="js/core.js"></script>
+<script defer src="js/pdfio.js"></script>
+<script defer src="js/export.js"></script>
+<script defer src="js/compress.js"></script>
+<script defer src="js/dialogs.js"></script>
+<script defer src="js/editor.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>
