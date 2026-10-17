@@ -72,12 +72,6 @@ Un service worker ([sw.js](sw.js)) guarda la app y las librerías la primera vez
 
 Al publicar cambios en cualquier archivo de la app, sube `SHELL_VERSION` en [sw.js](sw.js). Si cambias la versión de una librería, actualiza su URL en `index.html`, en `LIB_URLS` de `sw.js` y, para pdf.js, en `PDFJS_WORKER` de `js/pdfio.js`.
 
-## Publicar en GitHub Pages
-
-1. Sube el contenido de esta carpeta a un repositorio (por ejemplo `gabrielhro10/EditPDF`).
-2. En **Settings → Pages**, elige *Deploy from a branch*, rama `main`, carpeta `/ (root)`.
-3. Todas las rutas son relativas, así que la app funciona bajo `/EditPDF/` sin cambios.
-
 ## Estructura
 
 ```
