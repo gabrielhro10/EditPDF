@@ -254,6 +254,8 @@ button { cursor: pointer; }
 .ed-page { position: relative; flex: none; background: #fff; box-shadow: 0 1px 3px rgba(27,33,48,.12), 0 12px 32px rgba(27,33,48,.14); }
 .ed-page canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .ed-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ed-layer.tool-select [data-idx] { cursor: move; }
+.ed-layer [data-handle] { cursor: nwse-resize; }
 .ann-input { position: absolute; z-index: 3; min-width: 160px; min-height: 40px; box-sizing: border-box; padding: 4px 8px; border: 1.5px solid var(--a-accent); border-radius: 6px; font-size: 16px; font-weight: 700; background: #fff; }
 .ed-foot { min-height: 56px; flex: none; box-sizing: border-box; display: flex; align-items: center; gap: 6px; padding: 6px 16px calc(6px + var(--sab)); background: var(--a-surface); border-top: 1px solid var(--a-line); flex-wrap: wrap; }
 .zoom-val { min-width: 56px; text-align: center; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }

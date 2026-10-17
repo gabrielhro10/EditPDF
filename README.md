@@ -10,7 +10,7 @@ Los archivos se procesan en tu dispositivo: no se suben a ningún servidor.
 - **Dividir y extraer:** por rangos (`1-3, 5, 7-9`), cada N páginas o una página por archivo; los resultados múltiples se descargan en un `.zip`.
 - **Recortar:** márgenes por porcentaje, en una página o en varias. Se guarda como recuadro de recorte, así que el contenido no se borra.
 - **Marca de agua y números de página:** con vista previa sobre las miniaturas.
-- **Anotar:** texto, dibujo a mano alzada (con Apple Pencil, ratón o dedo) y firma reutilizable.
+- **Anotar:** texto, dibujo a mano alzada (con Apple Pencil, ratón o dedo), firma reutilizable e imágenes desde el dispositivo. Con **Seleccionar**, cualquier anotación se arrastra para moverla y se cambia de tamaño desde el círculo de la esquina.
 - **Comprimir** en tres niveles:
 
   | Nivel | Qué hace |
@@ -34,7 +34,7 @@ python -m http.server 8000
 
 y luego abre <http://localhost:8000>.
 
-En iPad horizontal y en escritorio las herramientas están en el panel izquierdo. Ese panel se contrae a una columna de iconos tocando el logo. Al seleccionar páginas, la fila de vista se convierte en la barra de acciones.
+En iPad horizontal y en escritorio las herramientas del documento están en el panel izquierdo. Ese panel se contrae a una columna de iconos tocando el logo. Al seleccionar páginas, la fila de vista se convierte en la barra de acciones: girar, extraer, recortar y eliminar. Esas acciones solo aparecen ahí, no se repiten en el panel.
 
 En iPad vertical las herramientas pasan a una hoja inferior. En el móvil hay pestañas abajo y una barra flotante con las acciones de la selección.
 
@@ -48,7 +48,7 @@ En el editor de página, el Apple Pencil dibuja y los dedos desplazan y hacen zo
 | ⌘/Ctrl + S | Exportar |
 | ⌘/Ctrl + Z, ⇧⌘/Ctrl + Z | Deshacer, rehacer |
 | ⌘/Ctrl + A | Seleccionar todas las páginas |
-| Supr / ⌫ | Eliminar la selección |
+| Supr / ⌫ | Eliminar las páginas seleccionadas, o la anotación seleccionada en el editor |
 | Esc | Cerrar el diálogo o el editor, o quitar la selección |
 
 ## Instalar como app (PWA)

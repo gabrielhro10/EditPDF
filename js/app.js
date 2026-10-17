@@ -101,9 +101,10 @@
       ${P.ACTIONS.map((a) => actBtn(a, 'dark-act')).join('')}
     </div>`;
     $('pill').innerHTML = `<span class="ctx-count">${count}</span>` +
-      P.ACTIONS.filter((a) => a.id !== 'crop').map((a) => `<button type="button" class="a-icon" data-act="${a.id}" aria-label="${a.aria || a.label}" ${a.danger ? 'style="color:var(--a-danger-dark)"' : ''}>${icon(a.icon, 22)}</button>`).join('');
-    const toolTiles = [['split', 'split', 'Dividir'], ['crop', 'crop', 'Recortar'], ['watermark', 'drop', 'Marca de agua'], ['numbers', 'hash', 'N.º de página'], ['draw', 'pen', 'Anotar'], ['compress', 'compress', 'Comprimir']];
-    const tiles = (n ? P.ACTIONS.filter((a) => a.id !== 'crop').map((a) => `<button type="button" class="tile${a.danger ? ' danger' : ''}" data-act="${a.id}">${icon(a.icon, 22)}${a.label}</button>`).join('') : '') +
+      P.ACTIONS.map((a) => `<button type="button" class="a-icon" data-act="${a.id}" aria-label="${a.aria || a.label}" ${a.danger ? 'style="color:var(--a-danger-dark)"' : ''}>${icon(a.icon, 22)}</button>`).join('');
+    // Hoja inferior: con selección, primero sus acciones; las herramientas del documento no las repiten.
+    const toolTiles = [['split', 'split', 'Dividir'], ['watermark', 'drop', 'Marca de agua'], ['numbers', 'hash', 'N.º de página'], ['draw', 'pen', 'Anotar'], ['compress', 'compress', 'Comprimir']];
+    const tiles = (n ? P.ACTIONS.map((a) => `<button type="button" class="tile${a.danger ? ' danger' : ''}" data-act="${a.id}">${icon(a.icon, 22)}${a.label}</button>`).join('') : '') +
       toolTiles.map(([id, ic, label]) => `<button type="button" class="tile" data-tool="${id}">${icon(ic, 22)}${label}</button>`).join('') +
       (!n && S.pages.length ? `<button type="button" class="tile danger" data-tool="clear">${icon('trash', 22)}Cerrar todo</button>` : '');
     const expanded = n > 0 || S.sheetOpen || layout === 'narrow';
@@ -211,15 +212,12 @@
     if (!S.pages.length && id !== 'order') { P.toast('Primero carga un PDF.'); renderTabs(); return; }
     switch (id) {
       case 'order': S.mode = 'grid'; P.savePrefs(); P.render(); P.toast('Mantén pulsada una miniatura y arrástrala para cambiar el orden.'); break;
-      case 'rotate': S.sel.size ? P.doAction('rotr') : P.toast('Selecciona las páginas que quieres girar.'); break;
-      case 'extract': S.sel.size ? P.doAction('extract') : P.toast('Selecciona las páginas que quieres extraer.'); break;
       case 'split': P.dialogs.split(); break;
-      case 'crop': P.dialogs.crop(S.sel.size ? [...S.sel] : S.pages.map((p) => p.id)); break;
       case 'watermark': P.dialogs.watermark(); break;
       case 'numbers': P.dialogs.numbers(); break;
       case 'compress': P.dialogs.compress(); break;
       case 'clear': P.dialogs.confirmClose(); break;
-      case 'text': case 'draw': case 'sign': P.openEditor(first.id, id); break;
+      case 'text': case 'draw': case 'sign': case 'image': P.openEditor(first.id, id); break;
     }
     renderTabs();
   };
@@ -358,7 +356,10 @@
     if (mod && k === 'y') { e.preventDefault(); P.redo(); return; }
     if (mod && k === 'o') { e.preventDefault(); $('fileInput').click(); return; }
     if (mod && k === 's') { e.preventDefault(); if (S.pages.length) P.dialogs.exportPdf(); return; }
-    if (P.editorOpen()) return;
+    if (P.editorOpen()) {
+      if ((e.key === 'Delete' || e.key === 'Backspace') && P.editorDeleteSelected()) e.preventDefault();
+      return;
+    }
     if (mod && k === 'a') { e.preventDefault(); P.selectAll(); return; }
     if ((e.key === 'Delete' || e.key === 'Backspace') && S.sel.size) { e.preventDefault(); P.doAction('delete'); }
   });
