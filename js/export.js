@@ -229,10 +229,10 @@
     return { bytes, rasterNote };
   };
 
-  // Construye y, si se pide, comprime. level: 'none' | 'low' | 'rec' | 'max'.
+  // Construye y, si se pide, comprime. level: 'none' | 'lossless' | 'rec' | 'max'.
   P.makePdf = async (list, { level = 'none', onProgress, title } = {}) => {
     const report = (f) => onProgress && onProgress(f);
-    const heavy = level === 'rec' || level === 'max';
+    const heavy = !!level && level !== 'none';
     const built = await P.buildPdf(list, { onProgress: (f) => report(heavy ? f * 0.4 : f), title });
     let bytes = built.bytes;
     if (heavy) bytes = await P.compressPdf(bytes, level, (f) => report(0.4 + f * 0.6));

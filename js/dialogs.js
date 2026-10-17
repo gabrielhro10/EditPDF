@@ -305,10 +305,11 @@
   };
 
   // ---------- Comprimir ----------
+  // Ningún nivel toca el texto ni los vectores: siguen nítidos y seleccionables.
   const levelOpts = (group, current) =>
-    opt(group, 'low', 'Baja <span class="tag">Conserva el texto</span>', 'Optimiza la estructura del archivo, sin tocar las imágenes.', current === 'low') +
-    opt(group, 'rec', 'Recomendada <span class="tag">Conserva el texto</span>', 'Recomprime fotos y páginas escaneadas a menor resolución.', current === 'rec') +
-    opt(group, 'max', 'Extrema', 'Convierte cada página en imagen. Máxima reducción.', current === 'max', `<span class="warn">${icon('warn', 16, 2)}El texto deja de ser seleccionable</span>`);
+    opt(group, 'lossless', 'Sin pérdida <span class="tag">Calidad idéntica</span>', 'Quita miniaturas y datos de edición ocultos, y une imágenes y fuentes repetidas. No toca ninguna imagen.', current === 'lossless') +
+    opt(group, 'rec', 'Recomendada <span class="tag">Casi sin diferencia</span>', 'Además, reduce a 200 ppp las fotos y escaneos que pasan de esa resolución. Las imágenes que ya están bien no se tocan.', current === 'rec') +
+    opt(group, 'max', 'Máxima <span class="tag">El texto sigue nítido</span>', 'Reduce las imágenes a 120 ppp. Las fotos pierden algo de detalle; el texto y los dibujos no cambian.', current === 'max');
   D.compress = () => {
     if (!S.pages.length) { P.toast('Primero carga un PDF.'); return; }
     const files = new Set(S.pages.map((p) => p.src)).size;
@@ -327,8 +328,9 @@
           const bytes = await P.compressPdf(built.bytes, level, (f) => progress(0.4 + f * 0.6));
           const pct = Math.max(0, Math.round((1 - bytes.length / before) * 100));
           const detail = pct === 0
-            ? 'No se pudo reducir más: se conserva el archivo sin recomprimir.'
-            : level === 'max' ? 'Cada página es ahora una imagen: el texto ya no se puede seleccionar ni buscar.' : 'El texto sigue siendo seleccionable.';
+            ? 'Este PDF ya estaba optimizado: se conserva tal cual, sin pérdida.'
+            : level === 'lossless' ? 'Calidad idéntica al original.'
+              : 'El texto y los dibujos no cambian: siguen nítidos y seleccionables.';
           return { blob: pdfBlob(bytes), name, title: `${P.mb(before)} → ${P.mb(bytes.length)} <span class="tag">−${pct} %</span>`, detail };
         });
       };
@@ -346,7 +348,7 @@
       ${n ? `<div><div class="insp-label">Páginas</div><div style="display:flex;flex-direction:column;gap:10px">
         ${opt('pg', 'all', `Todas (${S.pages.length})`, '', true)}${opt('pg', 'sel', `Solo la selección (${n})`, '', false)}</div></div>` : ''}
       <label class="field">Tamaño del archivo<select id="xSize">
-        <option value="none">Sin comprimir</option><option value="rec">Compresión recomendada (conserva el texto)</option><option value="max">Compresión extrema (pierde el texto)</option>
+        <option value="none">Sin comprimir</option><option value="lossless">Compresión sin pérdida</option><option value="rec">Compresión recomendada</option><option value="max">Compresión máxima (imágenes a 120 ppp)</option>
       </select></label>
       <div class="result" hidden></div>
       <div class="dlg-foot"><button type="button" class="a-btn" data-close>Cancelar</button><button type="button" class="a-btn a-primary" id="xGo">Exportar</button></div>`,

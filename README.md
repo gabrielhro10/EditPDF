@@ -15,13 +15,13 @@ Los archivos se procesan en tu dispositivo: no se suben a ningún servidor.
   - Color: diez colores y un selector de color libre. El color y el tamaño también se aplican a la anotación seleccionada.
   - Mover y editar: con **Seleccionar**, o con doble toque o doble clic desde cualquier herramienta, la anotación se arrastra para moverla. En un texto, el doble toque abre su edición.
   - Tamaño: el círculo de la esquina lo cambia. Las formas cambian ancho y alto por separado; el resto, de forma proporcional.
-- **Comprimir** en tres niveles:
+- **Comprimir** en tres niveles. Ninguno toca el texto ni los dibujos vectoriales: siguen nítidos y seleccionables.
 
   | Nivel | Qué hace |
   |---|---|
-  | Baja | Optimiza la estructura del archivo. |
-  | Recomendada | Recomprime fotos y escaneos JPEG y conserva el texto. |
-  | Extrema | Convierte cada página en imagen, así que el texto deja de ser seleccionable. |
+  | Sin pérdida | Quita miniaturas y datos de edición ocultos, une imágenes y fuentes repetidas y descarta objetos sin uso. Calidad idéntica. |
+  | Recomendada | Además, reduce a 200 ppp las fotos y escaneos que pasan de esa resolución y recodifica al 85 % las que vienen casi sin comprimir. Las imágenes que ya están bien no se tocan. |
+  | Máxima | Igual, con imágenes a 120 ppp y calidad 72 %. Las fotos se suavizan algo. |
 
 - **Exportar** conservando el PDF original: texto seleccionable, vectores y enlaces. Puedes exportar todo o solo la selección.
 - **Deshacer y rehacer**, y recuperación del trabajo si la app se cierra. La sesión se guarda en el dispositivo.
@@ -99,7 +99,7 @@ icons/                iconos de la app
 
 - Los PDF protegidos con contraseña de apertura no se pueden abrir: quita la contraseña antes de cargarlos.
 - Algunos PDF tienen restricciones del propietario sin contraseña de apertura. Sus páginas se exportan como imagen.
-- "Recomendada" solo recomprime imágenes JPEG. En PDF con capturas de pantalla, solo "Extrema" reduce mucho el tamaño.
+- La compresión solo reduce imágenes JPEG (fotos y escaneos). Las capturas de pantalla y los gráficos guardados sin pérdida no se recomprimen, para no volverlos borrosos.
 - Las anotaciones de texto usan Helvetica. Los caracteres fuera del alfabeto latino, como los emoji, se insertan como imagen.
 
 ## Créditos
