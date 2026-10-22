@@ -1,3 +1,4 @@
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 // Generación del PDF con pdf-lib: copia las páginas reales (conserva texto, vectores y enlaces),
 // aplica giro, recorte, marca de agua, numeración y anotaciones. También dividir y entregar.
 (() => {

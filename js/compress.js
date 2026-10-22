@@ -1,3 +1,4 @@
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 // Compresión en el navegador (sin servidor). Ningún nivel toca el texto ni los vectores:
 // siguen nítidos y seleccionables. Solo se optimizan las imágenes y los datos que no se ven.
 //  - 'lossless' (sin pérdida): quita miniaturas incrustadas y datos de edición ocultos, une

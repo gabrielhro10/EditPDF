@@ -109,4 +109,4 @@ Este proyecto usa las siguientes librerías de código abierto, cargadas desde C
 
 ## Licencia
 
-El código propio de este proyecto se distribuye bajo la licencia MIT; ver [LICENSE](LICENSE).
+El código propio de este proyecto se distribuye bajo la licencia MPL-2.0; ver [LICENSE](LICENSE). Las librerías de terceros conservan sus respectivas licencias.

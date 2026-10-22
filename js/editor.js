@@ -1,3 +1,4 @@
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 // Editor de una página: la página real (pdf.js) y encima una capa SVG con las anotaciones.
 // Las anotaciones se guardan en el espacio de usuario del PDF (puntos), así siguen en su sitio
 // aunque la página se gire o se recorte, y export.js las dibuja tal cual con pdf-lib.

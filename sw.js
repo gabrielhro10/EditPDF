@@ -1,3 +1,4 @@
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 // Service worker: deja la app disponible sin conexión.
 //  - El shell (HTML, CSS, JS, manifest, iconos) va en una caché versionada: sube SHELL_VERSION
 //    al publicar cambios para que los usuarios descarguen los archivos nuevos.
