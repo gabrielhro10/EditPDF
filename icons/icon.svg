@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <path d="M128 40h176l104 104v304a24 24 0 0 1-24 24H128a24 24 0 0 1-24-24V64a24 24 0 0 1 24-24z" fill="#d63a32"/>
-  <path d="M304 40v80a24 24 0 0 0 24 24h80z" fill="#f3aaa4"/>
-  <text x="250" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="118" fill="#fff">PDF</text>
-  <path d="M298 424l9-33 70-70 24 24-70 70z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
-  <path d="M361 337l24 24" stroke="#fff" stroke-width="10"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ef4b57"/>
+      <stop offset="1" stop-color="#b3202e"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M164 108h132l76 76v204a20 20 0 0 1-20 20H164a20 20 0 0 1-20-20V128a20 20 0 0 1 20-20z" fill="#fff"/>
+  <path d="M296 108v56a20 20 0 0 0 20 20h56z" fill="#f6b3b8"/>
+  <g fill="none" stroke="#f3c6c9" stroke-width="18" stroke-linecap="round">
+    <path d="M184 232h92M184 276h60"/>
+  </g>
+  <path d="M232 372l-6-6 8-30 78-78 28 28-78 78z" fill="#d62839"/>
 </svg>
