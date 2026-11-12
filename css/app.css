@@ -389,3 +389,10 @@ html, body, .app { background: var(--a-bg); }
 
 /* Aviso breve: píldora oscura sin sombra */
 .a-toast { background: #0f172a; border-radius: 99px; box-shadow: none; padding: 11px 18px; }
+
+/* Neutral: grises y blancos, sin tinte rosado en barra ni panel */
+:root { --bar-tint: #f3f4f6; --a-bg: #ffffff; }
+.a-top { background: linear-gradient(to bottom, var(--a-bg) 0, var(--a-bg) var(--sat), rgba(255,255,255,.62) var(--sat), rgba(243,244,246,.80) 100%); }
+.a-tools { background: rgba(243,244,246,.72); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); }
+.a-tool[aria-current="true"] { background: #fff; color: var(--a-ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.app.dragging::after { background: rgba(243,244,246,.9); }
