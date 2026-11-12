@@ -165,7 +165,8 @@
     renderTabs();
     $('btnUndo').disabled = !P.canUndo();
     $('btnRedo').disabled = !P.canRedo();
-    $('btnExport').disabled = empty;
+    $('btnExport').hidden = empty;
+    $('btnLoad').hidden = empty;
     if (!$('viewPop').hidden) renderViewPop();
   };
 

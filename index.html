@@ -22,11 +22,11 @@
   <header class="a-top">
     <button type="button" class="a-logo" id="btnLogo" aria-controls="tools" aria-expanded="true" aria-label="Contraer el panel de herramientas" title="Contraer panel"><img src="icons/icon.svg" alt="" width="34" height="34"></button>
     <span class="a-name">EditPDF</span>
-    <button type="button" class="a-btn" id="btnLoad"><span data-icon="plus"></span><span class="lbl-wide">Cargar</span></button>
     <button type="button" class="a-icon" id="btnUndo" aria-label="Deshacer" title="Deshacer" data-icon="undo" disabled></button>
     <button type="button" class="a-icon" id="btnRedo" aria-label="Rehacer" title="Rehacer" data-icon="redo" disabled></button>
     <span class="a-spacer"></span>
-    <button type="button" class="a-btn a-primary" id="btnExport"><span data-icon="share"></span>Exportar</button>
+    <button type="button" class="a-btn" id="btnLoad" hidden><span data-icon="plus"></span><span class="lbl-wide">Cargar</span></button>
+    <button type="button" class="a-btn a-primary" id="btnExport" hidden><span data-icon="share"></span>Exportar</button>
   </header>
 
   <div class="a-body">
@@ -79,6 +79,8 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js" crossorigin="anonymous"></script>
+<script defer src="version.js"></script>
+<script defer src="js/update.js"></script>
 <script defer src="js/core.js"></script>
 <script defer src="js/pdfio.js"></script>
 <script defer src="js/export.js"></script>

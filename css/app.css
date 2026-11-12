@@ -11,6 +11,8 @@
   --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px); --sar: env(safe-area-inset-right, 0px);
 }
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
 html, body { height: 100%; margin: 0; background: var(--a-bg); overscroll-behavior: none; }
 body { font-family: var(--font-ui); color: var(--a-ink); }
 button, input, select { font: inherit; color: inherit; }
@@ -279,3 +281,10 @@ button { cursor: pointer; }
    el semáforo se dibuja sobre esta barra, que reserva su hueco y sirve para arrastrar la ventana. */
 html.electron-mac .app .a-top { padding-left: 88px; -webkit-app-region: drag; }
 html.electron-mac .app .a-top :is(button, a, input, select, label) { -webkit-app-region: no-drag; }
+
+/* ---------- Actualización manual (en «Acerca de») ---------- */
+.update-row { display: flex; flex-direction: row; padding-block: 4px 4px; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.update-row[data-state="busy"] #update-text, .update-row[data-state="done"] #update-text { color: var(--a-ink); }
+.update-row button { width: 44px; height: 44px; margin-right: -12px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--a-muted); display: grid; place-items: center; }
+.update-row[data-state="busy"] svg { animation: update-spin 1s linear infinite; }
+@keyframes update-spin { to { transform: rotate(360deg); } }

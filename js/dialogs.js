@@ -398,9 +398,11 @@
             : P.installPrompt ? '<span class="opt-desc">Instálala para abrirla en su propia ventana y usarla sin conexión.</span>'
               : '<span class="opt-desc">En Chrome o Edge, usa el icono de instalar de la barra de direcciones. En iPad o iPhone, abre la página en Safari.</span>'}
       </div>
-      <p class="opt-desc" style="margin:0">Usa PDF.js, pdf-lib, JSZip y SortableJS (licencias Apache 2.0 y MIT). Versión 1.0.</p>
+      <div class="result update-row" id="update-row"><span id="update-text" role="status" aria-live="polite">Actualización</span><button type="button" id="btn-update" aria-label="Buscar actualización" title="Buscar actualización">${P.icon ? P.icon('refresh', 20) : ''}</button></div>
+      <p class="opt-desc" style="margin:0">Usa PDF.js, pdf-lib, JSZip y SortableJS (licencias Apache 2.0 y MIT). Versión ${self.APP_VERSION || ''}.</p>
       <div class="dlg-foot"><button type="button" class="a-btn" data-close>Cerrar</button>${!installed && P.installPrompt ? '<button type="button" class="a-btn a-primary" id="aInstall">Instalar</button>' : ''}</div>`,
     (d) => {
+      if (window.AppUpdate) AppUpdate.init();
       const b = d.querySelector('#aInstall');
       if (b) b.onclick = async () => {
         const evt = P.installPrompt;

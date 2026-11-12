@@ -3,7 +3,8 @@
 //  - El shell (HTML, CSS, JS, manifest, iconos) va en una caché versionada: sube SHELL_VERSION
 //    al publicar cambios para que los usuarios descarguen los archivos nuevos.
 //  - Las librerías del CDN llevan la versión en la URL, así que se guardan una vez y no caducan.
-const SHELL_VERSION = 'v2';
+importScripts('version.js');
+const SHELL_VERSION = `v${self.APP_VERSION}`;
 const SHELL_CACHE = `editpdf-shell-${SHELL_VERSION}`;
 const LIB_CACHE = 'editpdf-libs';
 
@@ -11,6 +12,8 @@ const SHELL_URLS = [
     './',
     './index.html',
     './manifest.webmanifest',
+    './version.js',
+    './js/update.js',
     './css/app.css',
     './js/core.js',
     './js/pdfio.js',
