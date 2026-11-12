@@ -274,3 +274,8 @@ button { cursor: pointer; }
 .a-toast button { min-height: 36px; flex: none; border: 0; background: transparent; color: #ffb3bb; font-weight: 700; }
 .app[data-layout="narrow"] .a-toast { bottom: calc(160px + var(--sab)); }
 .app[data-layout="medium"] .a-toast { bottom: calc(130px + var(--sab)); }
+
+/* Electron en macOS: el contenedor (<meta name="app-titlebar" content="overlay">) deja la ventana sin barra de título;
+   el semáforo se dibuja sobre esta barra, que reserva su hueco y sirve para arrastrar la ventana. */
+html.electron-mac .app .a-top { padding-left: 88px; -webkit-app-region: drag; }
+html.electron-mac .app .a-top :is(button, a, input, select, label) { -webkit-app-region: no-drag; }
