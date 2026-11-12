@@ -288,3 +288,104 @@ html.electron-mac .app .a-top :is(button, a, input, select, label) { -webkit-app
 .update-row button { width: 44px; height: 44px; margin-right: -12px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--a-muted); display: grid; place-items: center; }
 .update-row[data-state="busy"] svg { animation: update-spin 1s linear infinite; }
 @keyframes update-spin { to { transform: rotate(360deg); } }
+
+/* ======================================================================
+   Capa de diseño iOS (patrón de la skill pwa-ios-app), solo tema claro.
+   Plano, sin bordes, controles en píldora, selección con tinte, vidrio en lo que flota.
+   ====================================================================== */
+:root {
+  --a-bg: #ffffff; --a-line: rgba(15,23,42,.10); --a-ink: #0f172a; --a-muted: #64748b;
+  --fill: rgba(15,23,42,.045); --fill-2: rgba(15,23,42,.07); --fill-3: rgba(15,23,42,.13);
+  --a-accent-soft: color-mix(in srgb, var(--a-accent) 14%, transparent);
+  --bar-tint: color-mix(in srgb, var(--a-accent) 7%, #ffffff);
+  --glass: rgba(255,255,255,.80);
+  --ctl: 40px;
+  --font-ui: system-ui, -apple-system, "SF Pro Text", sans-serif;
+}
+@media (pointer: coarse) { :root { --ctl: 44px; } }
+html, body, .app { background: var(--a-bg); }
+.a-content { background: var(--a-bg); }
+
+/* Barra superior: arranca del color de la barra de estado y se tiñe hacia abajo */
+.a-top { background: linear-gradient(to bottom, var(--a-bg) 0, var(--a-bg) var(--sat), color-mix(in srgb, var(--a-bg) 62%, transparent) var(--sat), color-mix(in srgb, var(--bar-tint) 78%, transparent) 100%); -webkit-backdrop-filter: blur(6px) saturate(190%); backdrop-filter: blur(6px) saturate(190%); border-bottom: .5px solid rgba(15,23,42,.06); }
+.a-logo img { width: 30px; height: 30px; border-radius: 8px; }
+.a-name { font-size: 16px; }
+
+/* Botones: píldoras tintadas */
+.a-btn { min-height: var(--ctl); padding: 0 18px; border: 0; border-radius: 99px; background: var(--fill-2); transition: background-color .15s, transform .05s, opacity .15s; }
+.a-btn:active:not(:disabled), .tile:active, .a-tool:active { transform: scale(.96); }
+.a-btn.a-primary { background: var(--a-accent); color: #fff; }
+.a-btn.a-danger { background: color-mix(in srgb, var(--a-danger) 14%, transparent); color: var(--a-danger); border: 0; }
+.a-icon { border-radius: 99px; }
+.a-top .a-btn, .a-top .a-icon { height: 36px; min-height: 0; }
+.a-top .a-icon { width: 36px; }
+.a-top .a-btn { padding: 0 14px; }
+@media (pointer: coarse) { .a-top .a-btn, .a-top .a-icon { height: 40px; } .a-top .a-icon { width: 40px; } }
+@media (hover: hover) {
+  .a-btn:hover:not(:disabled) { background: var(--fill-3); }
+  .a-btn.a-primary:hover:not(:disabled) { background: var(--a-accent); filter: brightness(1.07); }
+  .a-tool:hover, .a-icon:not(:disabled):hover { background: var(--fill-2); }
+}
+
+/* Panel de herramientas: lleva el toque de color */
+.a-tools { background: var(--bar-tint); border-right: 0; }
+.a-tool { border-radius: 12px; }
+.a-tool[aria-current="true"] { background: var(--a-accent-soft); color: var(--a-accent); }
+.a-tools-foot { border-top: .5px solid var(--a-line); }
+
+/* Chips, segmentado, rango */
+.a-chip { border: 0; background: var(--fill-2); }
+.a-seg { background: var(--fill-2); }
+.a-seg button[aria-pressed="true"] { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.14); }
+
+/* Estado vacío, lista, tarjetas */
+.a-empty { border: 0; background: var(--fill); border-radius: 18px; }
+.a-list { border: 0; background: var(--fill); border-radius: 18px; }
+.a-list-head { background: transparent; border-bottom: .5px solid var(--a-line); }
+.row { background: transparent; border-bottom: .5px solid var(--a-line); }
+.row:last-child { border-bottom: 0; }
+.row.sel { background: var(--a-accent-soft); }
+.rcheck .off { border-color: #94a3b8; }
+.sheet { box-shadow: 0 0 0 .5px var(--a-line), 0 1px 3px rgba(15,23,42,.08); }
+.card.sel .sheet { box-shadow: 0 0 0 3px var(--a-accent); }
+.badge { background: var(--fill-2); color: var(--a-ink); }
+.badge.crop { background: var(--a-ok-soft); color: var(--a-ok-ink); }
+.app.dragging::after { background: color-mix(in srgb, var(--a-accent) 10%, rgba(255,255,255,.9)); border-radius: 18px; }
+
+/* Hoja inferior, pestañas y baldosas */
+.a-sheet, .a-tabs { background: var(--glass); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); }
+.a-sheet { box-shadow: 0 -8px 28px rgba(15,23,42,.10); }
+.a-tabs { border-top: .5px solid var(--a-line); }
+.tile { background: var(--fill-2); border-radius: 18px; }
+.tile.danger { background: color-mix(in srgb, var(--a-danger) 14%, transparent); }
+.a-pill, .ctx-in { border-radius: 99px; box-shadow: none; }
+
+/* Vidrio: menú de vista, diálogos */
+.a-pop { background: var(--glass); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); border: .5px solid var(--a-line); border-radius: 16px; box-shadow: 0 12px 40px rgba(15,23,42,.18); }
+.a-modal { background: rgba(15,23,42,.4); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.a-dialog { border-radius: 18px; box-shadow: 0 20px 50px rgba(15,23,42,.3); }
+.dlg-ico { border-radius: 99px; background: var(--a-accent-soft); color: var(--a-accent); }
+.switch i { background: #94a3b8; }
+
+/* Campos y opciones: relleno, sin borde */
+.field input[type="text"], .field input[type="number"], .field input[type="password"], .field select, .inline-input { min-height: var(--ctl); border: 0; border-radius: 12px; background: var(--fill-2); }
+.opt { border: 0; background: var(--fill); border-radius: 18px; }
+.opt[aria-checked="true"] { border: 0; background: var(--a-accent-soft); }
+.result, .chips-out span { background: var(--fill); }
+.pos-grid button { border: 0; background: var(--fill-2); border-radius: 10px; }
+.pos-grid button[aria-pressed="true"] { background: var(--a-accent); }
+.sigpad { border: 0; background: var(--fill); }
+.bar { background: var(--fill-2); }
+
+/* Editor de página */
+.a-editor { background: var(--a-bg); }
+.ed-tools, .ed-strip, .ed-foot { background: var(--a-bg); border-color: var(--a-line); border-width: .5px; }
+.ed-tray { background: var(--fill); border-bottom: 0; }
+.ed-tool { border-radius: 99px; }
+.ed-tool[aria-pressed="true"] { background: var(--a-accent-soft); color: var(--a-accent); }
+.ed-div { width: .5px; background: var(--a-line); }
+.ed-canvas { background: var(--fill-2); }
+.pick { border: 0; border-radius: 99px; background: var(--fill-2); }
+
+/* Aviso breve: píldora oscura sin sombra */
+.a-toast { background: #0f172a; border-radius: 99px; box-shadow: none; padding: 11px 18px; }
